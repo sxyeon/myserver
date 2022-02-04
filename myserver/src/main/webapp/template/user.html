@@ -85,7 +85,7 @@
 	            	  for(var i in data) {
 	  					var id = data[i].id;
 	  					var name = data[i].name;
-	  					var password = data[i].address;
+	  					var password = data[i].password;
 	  					var role = data[i].role;
 	  					
 	  					row = $("<tr/ >").append(
@@ -93,7 +93,7 @@
 	  						$("<td />").text(name),
 	  						$("<td />").text(password),
 	  						$("<td />").text(role),
-	  						$("<td />").
+	  						$("<td />")
 	  					);
 	  					table.append(row);
 	  				}
