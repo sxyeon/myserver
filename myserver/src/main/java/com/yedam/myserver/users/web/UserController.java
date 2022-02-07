@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yedam.myserver.users.mapper.UserMapper;
@@ -42,6 +43,7 @@ public class UserController {
 	
 	//등록
 	@PostMapping("/userInsert")
+	@ResponseBody
 	public UserVO userInsert(UserVO vo) {
 		 mapper.persist(vo);
 		 return vo;

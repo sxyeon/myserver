@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -58,6 +59,30 @@ public class EmployeeController {
 	public  Employee deleteEmployees(Employee bean, HttpServletResponse response) {
 		employeeDao.remove(bean);
 		return bean;
-	}	
+	}
 	
+	// 프로시저 호출
+	@RequestMapping(value = "/changeJobDept", method=RequestMethod.POST)
+	public Map changeJobDept(@RequestBody Employee bean, HttpServletResponse response) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("emp_id", bean.getEmployee_id());
+		map.put("job_id", bean.getJob_id());
+		map.put("dept_id", bean.getDepartment_id());
+		map.put("salary", bean.getSalary());
+		
+		employeeDao.changeJobDept(map);
+		
+		return map;
+	}
+	
+	// cursor 리턴받도록
+	@RequestMapping(value = "/deptList", method = RequestMethod.POST)
+	public Map deptList(@RequestBody Employee bean, HttpServletResponse response) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("dept_id", bean.getDepartment_id());
+		
+		employeeDao.getDeptList(map);
+		
+		return map;
+	}
 }

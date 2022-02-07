@@ -77,5 +77,44 @@
 		
 </div>
 
+<script>
+	fetch('../deptList', {
+		method: 'POST',
+		headers: {
+			'Content-type': 'application/json'
+		},
+		body: JSON.stringify({department_id: 80})
+	})
+	.then(response => response.json())
+	.then(result => {
+		console.log(result)
+	})
+	.catch(err => console.log(err));
+
+	function loadfunc() {
+		var data = {
+				employee_id: 145,
+				job_id: 'SA_REP',
+				department_id: 80,
+				salary: 6000
+		}
+		fetch('../changeJobDept', {
+			method: 'POST',
+			headers: {
+				'Content-type' : 'application/json'
+			},
+			body: JSON.stringify(data)
+		})
+		.then(response => response.json())
+		.then(result => {
+			console.log(result);
+			if(result.ret_code != 'OK') {
+				alert(result.ret_msg);
+			}
+		})
+		.catch(err => console.log(err));
+	}
+</script>
+
 </body>
 </html>

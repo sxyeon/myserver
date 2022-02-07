@@ -54,4 +54,21 @@
 	 order by a.department_id 
 </select>
 
+<select id="changeJobDept" parameterType="HashMap" statementType="CALLABLE">
+	{ call change_job_dept(
+		#{emp_id}, #{job_id}, #{dept_id}, #{salary},
+		#{ret_code, mode=OUT, jdbcType=VARCHAR, javaType=String},
+		#{ret_msg, mode=OUT, jdbcType=VARCHAR, javaType=String}
+		) 
+	} 
+</select>
+
+<resultMap type="hashmap" id="sample"></resultMap>
+<select id="getDeptList" parameterType="HashMap" statementType="CALLABLE">
+	{ call get_dept_member(#{dept_id},
+		#{resultList, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=sample}
+	  )	
+	}
+</select>
+
 </mapper>
